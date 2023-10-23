@@ -1,0 +1,22 @@
+<!-- templates/signup.html -->
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Edit{% endblock title %}
+{% block content %}
+<h1>Delete</h1>
+<div class="container full-height">
+    <div class="row flex center v-center full-height">
+      <div class="col-12 col-sm-6 col-md-9">
+        <div class="form-box">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <p>Are you sure you want to delete "{{ story.title }}"?</p>
+              <button class="btn btn-primary d-block w-100" type="submit">Delete Story</button>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock content %}

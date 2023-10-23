@@ -1,0 +1,35 @@
+<!-- templates/article_list.html -->
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}Articles{% endblock title %}
+{% block content %}
+<div id="wrapper">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="page-content-wrapper">
+          <div class="container-fluid">
+            <a class="btn btn-link" role="button" id="menu-toggle" href="#menu-toggle"><i class="fa fa-bars"></i></a>
+  
+            <!-- Customized image buttons -->
+            <div class="image-buttons">
+              <a href="{% url 'mystories' %}" class="custom-button">
+                <img style="height: 100px;" src="{% static 'base/img/dashboard1.jpg' %}" alt="Dashboard 1">
+                <div class="text-justify">
+                <p>My Stories</p>
+                </div>
+                <div class="text-justify">
+                    <a href="{% url 'story_create' %}" class="btn btn-success">Add New Story</a>
+                </div>
+              </a>
+              <a href="{% url 'story_list' %}" class="custom-button">
+                <img style="height: 100px;" src="{% static 'base/img/dashboard2.jpg' %}" alt="Dashboard 2">
+                <p>All Stories</p>
+              </a>
+              <!-- Add more buttons as needed -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock content %}

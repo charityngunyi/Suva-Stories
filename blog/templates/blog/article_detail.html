@@ -1,0 +1,46 @@
+<!-- templates/article_list.html -->
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}Articles{% endblock title %}
+{% block content %}
+<section class="article-dual-column">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+          
+          <div class="intro">
+            <div class="row">
+            <div class=" col-md-3 container">
+              <a href="{% url 'article_list' %}">Go Back to Blog List</a>
+            </div>
+  
+            <div class="col-md-9">
+              <h1 class="text-center" id="office-title">{{ object.title }}</h1>
+            </div>
+          </div>
+            <!-- Display the office title -->
+            
+            <!-- Display the office photo -->
+            <img class="img-fluid" src="{% if object.photo %}{{ object.photo.url }}{% else %}{% static 'blog/img/blog_cover.jpg' %}{% endif %}" style="width: 670px; height: 434.388px;">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10 col-lg-3 offset-md-1">
+          <div class="toc">
+            <p>Author : {{ object.author}}</p>
+            <p>Published Date: {{ object.date }}</p>
+           
+            
+          </div>
+        </div>
+        <div class="col-md-10 col-lg-7 offset-md-1 offset-lg-0">
+          <div class="text">
+            <!-- Display the office description -->
+            <p style="font-family: Roboto, sans-serif;">{{ object.body }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}

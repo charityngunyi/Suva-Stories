@@ -1,0 +1,41 @@
+<!-- templates/article_list.html -->
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}Articles{% endblock title %}
+{% block content %}
+<section class="photo-gallery py-4 py-xl-5">
+    <div class="container py-4 py-xl-5">
+        <div class="row gy-4">
+            <!-- Loop through stories and create columns for each -->
+            {% for story in object_list %}
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <a href="{{ story.get_absolute_url }}">
+                    <div class="card">
+                        <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="{% if story.photo %}{{ story.photo.url }}{% else %}{% static 'blog/img/blog_cover.jpg' %}{% endif %}">
+                        <div class="card-body p-4">
+                            <p class="text-primary card-text mb-0">{{ story.title }}</p>
+                            <p class="card-text">Author: {{ story.author }}</p>
+                            <div class="d-flex">
+                                <div>
+                                    <p class="text-muted mb-0">{{ story.created }}</p>
+                                </div>
+                            </div>
+                            <!-- Add edit and delete links here -->
+                            <div class="story-links">
+                                <a href="{% url 'story_edit' story.pk %}" class="btn btn-primary">Edit</a>
+                                <a href="{% url 'story_delete' story.pk %}" class="btn btn-danger">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- Add a link to create a new story -->
+        <div class="text-center">
+            <a href="{% url 'story_create' %}" class="btn btn-success">Add New Story</a>
+        </div>
+    </div>
+    <div class="container-fluid p-0"></div>
+</section>
+{% endblock content %}

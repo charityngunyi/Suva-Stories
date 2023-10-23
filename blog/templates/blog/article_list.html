@@ -1,0 +1,33 @@
+<!-- templates/article_list.html -->
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}Articles{% endblock title %}
+{% block content %}
+<section class="photo-gallery py-4 py-xl-5">
+    <div class="container py-4 py-xl-5">
+        <div class="row gy-4">
+            <h2>Blog Articles</h2>
+            <!-- Loop through offices and create columns for each -->
+            {% for article in object_list %}
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <a href="{{ article.get_absolute_url }}">
+                    <div class="card">
+                        <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="{% if article.photo %}{{ article.photo.url }}{% else %}{% static 'blog/img/blog_cover.jpg' %}{% endif %}">
+                        <div class="card-body p-4">
+                            <p class="text-primary card-text mb-0">{{ article.title }}</p>
+                            <p class="card-text">Author: {{ article.author }}</p> <!-- Display the category title -->
+                            <div class="d-flex">
+                                <div>
+                                    <p class="text-muted mb-0">{{ article.date }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="container-fluid p-0"></div>
+</section>
+{% endblock content %}
